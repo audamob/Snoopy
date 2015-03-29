@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SDatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SDatabaseModelStoreContainer">
+          <EntitySet Name="AnimalType" EntityType="SDatabaseModel.Store.AnimalType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PublisherType" EntityType="SDatabaseModel.Store.PublisherType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SAnimal" EntityType="SDatabaseModel.Store.SAnimal" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SPublisher" EntityType="SDatabaseModel.Store.SPublisher" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_dbo_Enrollment_dbo_SPublisher_PublisherId" Association="SDatabaseModel.Store.FK_dbo_Enrollment_dbo_SPublisher_PublisherId">
+            <End Role="SPublisher" EntitySet="SPublisher" />
+            <End Role="SAnimal" EntitySet="SAnimal" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AnimalType">
+          <Key>
+            <PropertyRef Name="AnimalTypeId" />
+          </Key>
+          <Property Name="AnimalTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PublisherType">
+          <Key>
+            <PropertyRef Name="PublisherTypeId" />
+          </Key>
+          <Property Name="PublisherTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SAnimal">
+          <Key>
+            <PropertyRef Name="AnimalId" />
+          </Key>
+          <Property Name="AnimalId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PublisherId" Type="int" Nullable="false" />
+          <Property Name="AnimalTypeId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="nchar" MaxLength="10" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="PictureUrl" Type="nchar" MaxLength="10" />
+          <Property Name="Sexe" Type="int" />
+          <Property Name="Adresse" Type="nchar" MaxLength="10" />
+          <Property Name="NaissanceDate" Type="datetime" />
+          <Property Name="Race" Type="nchar" MaxLength="10" />
+          <Property Name="Age" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SPublisher">
+          <Key>
+            <PropertyRef Name="PublisherId" />
+          </Key>
+          <Property Name="PublisherId" Type="int" Nullable="false" />
+          <Property Name="PublisherTypeId" Type="int" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="PictureUrl" Type="nchar" MaxLength="10" />
+          <Property Name="Sexe" Type="int" />
+          <Property Name="Adresse" Type="nchar" MaxLength="10" />
+          <Property Name="NaissanceDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_dbo_Enrollment_dbo_SPublisher_PublisherId">
+          <End Role="SPublisher" Type="SDatabaseModel.Store.SPublisher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SAnimal" Type="SDatabaseModel.Store.SAnimal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPublisher">
+              <PropertyRef Name="PublisherId" />
+            </Principal>
+            <Dependent Role="SAnimal">
+              <PropertyRef Name="PublisherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SDatabaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SnoopyDatabaseEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="AnimalType" EntityType="SDatabaseModel.AnimalType" />
+          <EntitySet Name="PublisherType" EntityType="SDatabaseModel.PublisherType" />
+          <EntitySet Name="SAnimal" EntityType="SDatabaseModel.SAnimal" />
+          <EntitySet Name="SPublisher" EntityType="SDatabaseModel.SPublisher" />
+          <AssociationSet Name="FK_dbo_Enrollment_dbo_SPublisher_PublisherId" Association="SDatabaseModel.FK_dbo_Enrollment_dbo_SPublisher_PublisherId">
+            <End Role="SPublisher" EntitySet="SPublisher" />
+            <End Role="SAnimal" EntitySet="SAnimal" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AnimalType">
+          <Key>
+            <PropertyRef Name="AnimalTypeId" />
+          </Key>
+          <Property Name="AnimalTypeId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PublisherType">
+          <Key>
+            <PropertyRef Name="PublisherTypeId" />
+          </Key>
+          <Property Name="PublisherTypeId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SAnimal">
+          <Key>
+            <PropertyRef Name="AnimalId" />
+          </Key>
+          <Property Name="AnimalId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PublisherId" Type="Int32" Nullable="false" />
+          <Property Name="AnimalTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Name" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="PictureUrl" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Sexe" Type="Int32" />
+          <Property Name="Adresse" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="NaissanceDate" Type="DateTime" Precision="3" />
+          <Property Name="Race" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Age" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="SPublisher" Relationship="SDatabaseModel.FK_dbo_Enrollment_dbo_SPublisher_PublisherId" FromRole="SAnimal" ToRole="SPublisher" />
+        </EntityType>
+        <EntityType Name="SPublisher">
+          <Key>
+            <PropertyRef Name="PublisherId" />
+          </Key>
+          <Property Name="PublisherId" Type="Int32" Nullable="false" />
+          <Property Name="PublisherTypeId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="PictureUrl" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Sexe" Type="Int32" />
+          <Property Name="Adresse" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="NaissanceDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SAnimal" Relationship="SDatabaseModel.FK_dbo_Enrollment_dbo_SPublisher_PublisherId" FromRole="SPublisher" ToRole="SAnimal" />
+        </EntityType>
+        <Association Name="FK_dbo_Enrollment_dbo_SPublisher_PublisherId">
+          <End Role="SPublisher" Type="SDatabaseModel.SPublisher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SAnimal" Type="SDatabaseModel.SAnimal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPublisher">
+              <PropertyRef Name="PublisherId" />
+            </Principal>
+            <Dependent Role="SAnimal">
+              <PropertyRef Name="PublisherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SDatabaseModelStoreContainer" CdmEntityContainer="SnoopyDatabaseEntities">
+          <EntitySetMapping Name="AnimalType">
+            <EntityTypeMapping TypeName="SDatabaseModel.AnimalType">
+              <MappingFragment StoreEntitySet="AnimalType">
+                <ScalarProperty Name="AnimalTypeId" ColumnName="AnimalTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PublisherType">
+            <EntityTypeMapping TypeName="SDatabaseModel.PublisherType">
+              <MappingFragment StoreEntitySet="PublisherType">
+                <ScalarProperty Name="PublisherTypeId" ColumnName="PublisherTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAnimal">
+            <EntityTypeMapping TypeName="SDatabaseModel.SAnimal">
+              <MappingFragment StoreEntitySet="SAnimal">
+                <ScalarProperty Name="AnimalId" ColumnName="AnimalId" />
+                <ScalarProperty Name="PublisherId" ColumnName="PublisherId" />
+                <ScalarProperty Name="AnimalTypeId" ColumnName="AnimalTypeId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
+                <ScalarProperty Name="Sexe" ColumnName="Sexe" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="NaissanceDate" ColumnName="NaissanceDate" />
+                <ScalarProperty Name="Race" ColumnName="Race" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SPublisher">
+            <EntityTypeMapping TypeName="SDatabaseModel.SPublisher">
+              <MappingFragment StoreEntitySet="SPublisher">
+                <ScalarProperty Name="PublisherId" ColumnName="PublisherId" />
+                <ScalarProperty Name="PublisherTypeId" ColumnName="PublisherTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
+                <ScalarProperty Name="Sexe" ColumnName="Sexe" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="NaissanceDate" ColumnName="NaissanceDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
